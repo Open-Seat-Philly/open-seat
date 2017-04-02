@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Open Seat Finder, Civic Engagement Launchpad 2017">
+    <meta name="author" content="Jane Zweibel">
+    <link rel="icon" href="images/logos/favicon.gif">
+    <title>Open Seat: Philly</title>
+  <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  <!-- goog font -->
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+  <!-- map stuff -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+  </head>
+
+  <body class="font">
+  <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top nav-style">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand logo-xs" href="#">
+            <img class="index-img img-transition img-responsive" src="images/logos/logo-xs.svg"
+              onmouseover="this.src='images/logos/logo-xs2.svg';"
+              onmouseout="this.src='images/logos/logo-xs.svg';">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav nav-tabs pull-right tab-height tab-color">
+            <li role="presentation" class="active"><a href="#">Map</a></li>
+            <li role="presentation"><a href="#">Resources</a></li>
+            <li role="presentation"><a href="#">Results</a></li>
+            <li role="presentation"><a href="#">Calendar</a></li>
+            <li role="presentation"><a href="#">Community</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header header-margin">
+        <h1 class="main-title">Open Seat: <img src="images/logos/philly.jpg"></h1>
+      </div>
+      <!-- BLURB -->
+      <p class="lead summary">A resource to help Philadelphians prepare to run for public office by showing available seats by district and the requirements to fill them.</p>
+    <div class="container-fluid">
+     <div class="row">
+      <!-- ACCORDION CHECKBOX -->
+      <div class="col-md-3 col-sm-3 col-xs-12 xs-width">
+        <div class="panel-group nav-container .accordion-inner" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <p class="accordion-heading">Find a seat</p>
+              <h4 class="panel-title border nav-text line-height">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Elected seats<b class="glyphicon clickable"></b></a>
+              </h4>  
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body panel-padding">
+                <table class="table drop-size borderless table-margin">
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Judge of Elections</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Majority Inspector</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Minority Inspector</label>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="panel-heading">
+              <h4 class="panel-title background border nav-text line-height">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Appointed seats<b class="glyphicon clickable"></b></a>
+              </h4>  
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in"> 
+              <div class="panel-body panel-padding">
+                <table class="table drop-size borderless table-margin">
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Clerk</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Machine Inspector</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox checkbox-margin">
+                        <label><input type="checkbox" value="">Bilingual Interpreter</label>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="panel-heading">
+              <p class="accordion-heading">Find your district</p>
+              <input class="center-input" placeholder="address" type="" name="">
+              <div class=""><button type="button" class="btn button">search</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- MAPBOX -->
+      <div class="col-md-9 col-sm-9 col-xs-12"></div>
+        <div id='map' class='center-map map-size'>
+          <!-- <p>Locate your district:</p> -->
+          <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoianp3ZWliZWwiLCJhIjoiY2owcGt2cjFmMDBzejMzbXIxN3g2M3ZydSJ9.cGaL9WA2Zbdt1ahVcfqvAw';
+            var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
+            center: [-75.1452, 39.9826], // Philadelphia starting position
+            zoom: 10 // starting zoom
+            });
+          </script>
+        </div>
+      </div>
+      <!-- MAPBOX ENDS -->
+    </div>
+  </div>
+</div>
+    <!-- Content ends -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted pull-right"><a href="https://codeforphilly.org/projects/open_seat_finder"> Civic Engagement Launchpad 2017</a></p>
+      </div>
+    </footer>
+
+    <!-- Load page with accordion closed -->
+    <script type="text/javascript">
+      $('#collapseOne').collapse("hide");
+      $('#collapseTwo').collapse("hide");
+    </script>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+   
+  </body>
+</html>
