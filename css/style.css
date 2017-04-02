@@ -15,6 +15,12 @@
 	.tab-color {
 		border-bottom: none;
 	}
+	.button-color {
+		background-color: rgb(244, 244, 31);
+	}
+	.icon-bar-color {
+		background-color: black;
+	}
 	/*NAVBAR LINK STYLE*/
 	.tab-color>li>a:link {
 	    color: black;
@@ -47,6 +53,7 @@
 	}
 	.main-title {
 		text-align: center;
+		font-weight: bold;
 	}
 	.main-title>img {
 		max-width: 210px;
@@ -60,7 +67,7 @@
 		margin: 0 auto;
 	}
 	.map-size {
-		width: 70%; 
+		width: 100%; 
 		height: 500px; 
 		margin: 0 10px 10px 0;
 	}
