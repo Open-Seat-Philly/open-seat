@@ -9,15 +9,7 @@
     <meta name="author" content="Jane Zweibel">
     <link rel="icon" href="images/logos/favicon.gif">
     <title>Open Seat: Philly</title>
-  <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  <!-- goog font -->
-    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+    <script src="/bundle.js"></script>
   <!-- map stuff -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
@@ -70,7 +62,7 @@
               <p class="accordion-heading">Find a seat</p>
                 <h4 class="panel-title border nav-text line-height">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Elected seats<b class="glyphicon clickable"></b></a>
-                </h4>  
+                </h4>
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body panel-padding">
@@ -102,9 +94,9 @@
               <div class="panel-heading">
                 <h4 class="panel-title background border nav-text line-height">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Appointed seats<b class="glyphicon clickable"></b></a>
-                </h4>  
+                </h4>
               </div>
-              <div id="collapseTwo" class="panel-collapse collapse in"> 
+              <div id="collapseTwo" class="panel-collapse collapse in">
                 <div class="panel-body panel-padding">
                   <table class="table drop-size borderless table-margin">
                     <tr>
@@ -164,21 +156,5 @@
         <p class="text-muted pull-right"><a href="https://codeforphilly.org/projects/open_seat_finder"> Civic Engagement Launchpad 2017</a></p>
       </div>
     </footer>
-
-    <!-- Load page with accordion closed -->
-    <script type="text/javascript">
-      $('#collapseOne').collapse("hide");
-      $('#collapseTwo').collapse("hide");
-    </script>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-   
   </body>
 </html>
