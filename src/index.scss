@@ -1,7 +1,20 @@
 @import "./css/variables";
-@import url(https://fonts.googleapis.com/css?family=Questrial);
+
+/**
+ * Import vendored stylesheets
+ */
+
+@import url($google-font-url);
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~mapbox-gl/dist/mapbox-gl";
 @import "~mapbox.js/theme/style.css";
-@import "./css/sticky-footer-navbar.css";
-@import "./css/style.css";
+
+@import "./css/overrides";
+@import "./css/layout";
+
+/**
+ * The everything_else file should be refactored into ui components.
+ * For example, you should have a file called `css/components/accordion`.
+ */
+
+@import "./css/everything_else";

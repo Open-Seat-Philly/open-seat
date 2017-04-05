@@ -53,7 +53,7 @@ module.exports = createConfig([
 
     // Inject all assets into our html file.
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: 'head',
       template: 'src/index.html'
     })
   ]),

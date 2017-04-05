@@ -8,21 +8,24 @@ import 'mapbox.js';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
-const map = new Map({
-  container: 'map', // container id
-  style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-  center: [-75.1452, 39.9826], // Philadelphia starting position
-  zoom: 10 // starting zoom
-});
-
 const changeLogo = (logoUrl) => (e) => (
   $(e.target).attr('src', logoUrl)
 );
 
 $(document).ready(() => {
+  // Collapse the collapses by default
   $('#collapseOne, #collapseTwo').collapse('hide');
 
+  // Togggle the logo on hover
   $('.index-img')
     .on('mouseover', changeLogo(logoAlt))
     .on('mouseout', changeLogo(logo));
+
+  // Setup the map
+  const map = new Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
+    center: [-75.1452, 39.9826], // Philadelphia starting position
+    zoom: 10 // starting zoom
+  });
 });
