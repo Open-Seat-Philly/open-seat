@@ -1,0 +1,32 @@
+{
+  "name": "open-seat",
+  "version": "1.0.0",
+  "description": "Civic Engagement Launchpad 2017, Open Seat Finder",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Open-Seat-Philly/open-seat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Open-Seat-Philly/open-seat/issues"
+  },
+  "homepage": "https://github.com/Open-Seat-Philly/open-seat#readme",
+  "devDependencies": {
+    "@webpack-blocks/babel6": "^0.4.1",
+    "@webpack-blocks/dev-server2": "^0.4.0",
+    "@webpack-blocks/sass": "^0.4.0",
+    "@webpack-blocks/webpack2": "^0.4.0",
+    "file-loader": "^0.11.1",
+    "url-loader": "^0.5.8"
+  },
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "^3.2.1"
+  }
+}
