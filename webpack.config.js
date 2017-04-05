@@ -1,4 +1,5 @@
 const { ProvidePlugin } = require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babel = require('@webpack-blocks/babel6');
 const sass = require('@webpack-blocks/sass');
@@ -28,9 +29,12 @@ const htmlLoader = () => () => ({
   }
 });
 
+const { NODE_ENV } = process.env;
+const OUTPUT_DIR = NODE_ENV === 'production' ? 'dist' : 'build';
+
 module.exports = createConfig([
   entryPoint('./src/index.js'),
-  setOutput('./build/bundle.js'),
+  setOutput(path.join(OUTPUT_DIR, 'bundle.js')),
 
   babel(),      // Enable ES6 syntax
   sass(),       // Use sass instead of CSS
