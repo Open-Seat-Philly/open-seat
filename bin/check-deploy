@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+/**
+ * Check that we're on the right branch, and that
+ * the branch is up to date!
+ */
+
+const { execSync } = require('child_process');
+const run = (cmd) => execSync(cmd).toString();
+
+const branchName = run('git rev-parse --abbrev-ref HEAD');
+
+if (branchName !== 'master') {
+  console.error('This is not the master branch!');
+  process.exit(1);
+}
+
+const local = run('git rev-parse HEAD');
+const remote = run(`git rev-parse origin/master`);
+
+if (local !== remote) {
+  console.error('Your branch is not up to date. Try running `git pull`');
+  process.exit(1);
+}
