@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babel = require('@webpack-blocks/babel6');
 const sass = require('@webpack-blocks/sass');
+const extractText = require('@webpack-blocks/extract-text2');
 const devServer = require('@webpack-blocks/dev-server2');
 const {
   addPlugins,
@@ -29,12 +30,9 @@ const htmlLoader = () => () => ({
   }
 });
 
-const { NODE_ENV } = process.env;
-const OUTPUT_DIR = NODE_ENV === 'production' ? 'dist' : 'build';
-
 module.exports = createConfig([
   entryPoint('./src/index.js'),
-  setOutput(path.join(OUTPUT_DIR, 'bundle.js')),
+  setOutput('./build/bundle.js'),
 
   babel(),      // Enable ES6 syntax
   sass(),       // Use sass instead of CSS
@@ -66,5 +64,10 @@ module.exports = createConfig([
   env('development', [
     devServer(),
     sourceMaps()
+  ]),
+
+  env('production', [
+    setOutput('./dist/bundle.js'),
+    extractText(null, 'text/x-sass')
   ])
 ]);

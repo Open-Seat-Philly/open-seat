@@ -22,6 +22,7 @@
   "devDependencies": {
     "@webpack-blocks/babel6": "^0.4.1",
     "@webpack-blocks/dev-server2": "^0.4.0",
+    "@webpack-blocks/extract-text2": "^0.4.0",
     "@webpack-blocks/sass": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
     "cross-env": "^4.0.0",
