@@ -9,20 +9,6 @@
     <meta name="author" content="Jane Zweibel">
     <link rel="icon" href="images/logos/favicon.gif">
     <title>Open Seat: Philly</title>
-  <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  <!-- goog font -->
-    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-  <!-- map stuff -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
   </head>
 
   <body class="font">
@@ -37,9 +23,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand logo-xs" href="#">
-            <img class="index-img img-transition img-responsive" src="images/logos/logo-xs.svg"
-              onmouseover="this.src='images/logos/logo-xs2.svg';"
-              onmouseout="this.src='images/logos/logo-xs.svg';">
+            <img class="index-img img-transition img-responsive" src="images/logos/logo-xs.svg">
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -70,7 +54,7 @@
               <p class="accordion-heading">Find a seat</p>
                 <h4 class="panel-title border nav-text line-height">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Elected seats<b class="glyphicon clickable"></b></a>
-                </h4>  
+                </h4>
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body panel-padding">
@@ -102,9 +86,9 @@
               <div class="panel-heading">
                 <h4 class="panel-title background border nav-text line-height">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Appointed seats<b class="glyphicon clickable"></b></a>
-                </h4>  
+                </h4>
               </div>
-              <div id="collapseTwo" class="panel-collapse collapse in"> 
+              <div id="collapseTwo" class="panel-collapse collapse in">
                 <div class="panel-body panel-padding">
                   <table class="table drop-size borderless table-margin">
                     <tr>
@@ -142,16 +126,6 @@
         <!-- MAPBOX -->
         <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-9 col-md-9">
           <div id='map' class='center-map map-size'>
-            <!-- <p>Locate your district:</p> -->
-            <script>
-              mapboxgl.accessToken = 'pk.eyJ1Ijoianp3ZWliZWwiLCJhIjoiY2owcGt2cjFmMDBzejMzbXIxN3g2M3ZydSJ9.cGaL9WA2Zbdt1ahVcfqvAw';
-              var map = new mapboxgl.Map({
-              container: 'map', // container id
-              style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-              center: [-75.1452, 39.9826], // Philadelphia starting position
-              zoom: 10 // starting zoom
-              });
-            </script>
           </div>
         </div>
         <!-- MAPBOX ENDS -->
@@ -164,21 +138,5 @@
         <p class="text-muted pull-right"><a href="https://codeforphilly.org/projects/open_seat_finder"> Civic Engagement Launchpad 2017</a></p>
       </div>
     </footer>
-
-    <!-- Load page with accordion closed -->
-    <script type="text/javascript">
-      $('#collapseOne').collapse("hide");
-      $('#collapseTwo').collapse("hide");
-    </script>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-   
   </body>
 </html>
