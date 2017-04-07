@@ -6,7 +6,7 @@
  */
 
 const { execSync } = require('child_process');
-const run = (cmd) => execSync(cmd).toString();
+const run = (cmd) => execSync(cmd).toString().replace(/\n$/, '');
 
 const branchName = run('git rev-parse --abbrev-ref HEAD');
 
