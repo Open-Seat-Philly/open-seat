@@ -24,7 +24,7 @@ const htmlLoader = () => () => ({
     loaders: [
       {
         test: /\.html$/,
-        loaders: ['html-loader']
+        loaders: ['html-loader?attrs=img:src link:href']
       }
     ]
   }
