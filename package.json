@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "dist": "cross-env NODE_ENV=production npm run build",
+    "dist": "cross-env NODE_ENV=production npm run build --optimize-minimize",
     "start": "webpack-dev-server",
     "deploy": "bin/check-deploy && npm run dist && git-directory-deploy --directory dist/"
   },
