@@ -13,9 +13,6 @@ const changeLogo = (logoUrl) => (e) => (
 );
 
 $(document).ready(() => {
-  // Collapse the collapses by default
-  $('#collapseOne, #collapseTwo').collapse('hide');
-
   // Togggle the logo on hover
   $('.index-img')
     .on('mouseover', changeLogo(logoAlt))
