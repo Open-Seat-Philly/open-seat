@@ -37,7 +37,6 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.2.1",
-    "mapbox-gl": "^0.34.0",
-    "mapbox.js": "^3.0.1"
+    "mapbox-gl": "^0.34.0"
   }
 }
