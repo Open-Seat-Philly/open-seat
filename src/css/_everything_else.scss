@@ -72,24 +72,17 @@
 }
 
 /*ACCORDION STYLE*/
-
-.panel {
-  .accordian-toggle {
-    &:after {
-      font-family: 'Glyphicons Halflings';
-      content:"\2212";
-      float: right;
-      color: black;
-    }
-
-    &.collapsed:after {
-      content: "\2b";
-    }
-  }
-
-  .panel-padding {
-    padding: 0;
-  }
+.panel-heading .accordion-toggle:after {
+  font-family: 'Glyphicons Halflings';
+  content:"\2212";
+  float: right;
+  color: black;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+  content: "\2b";
+}
+.panel-padding {
+  padding: 0;
 }
 
 .checkbox-margin {
