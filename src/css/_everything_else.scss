@@ -47,18 +47,17 @@
 }
 
 /*MAIN CONTENT STUFF*/
-.header-margin {
-  margin-top: 20px;
-}
-.main-title {
-  text-align: center;
-  font-weight: bold;
-}
-.main-title>img {
-  max-width: 210px;
-}
-.summary {
-  text-align: center;
+.masthead {
+  padding-top: $navbar-height;
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+
+    > img {
+      max-width: 210px;
+    }
+  }
 }
 
 /*MAP STUFF*/

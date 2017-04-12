@@ -1,19 +1,20 @@
+import { render } from 'react-dom';
+import React from 'react';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import Masthead from './components/Masthead';
+import Map from './components/Map';
 import './index.scss';
-import logo from './images/logos/logo-xs.svg';
-import logoAlt from './images/logos/logo-xs2.svg';
-import 'bootstrap-sass/assets/javascripts/bootstrap';
-import $ from 'jquery';
-import setupMap from './js/map';
 
-const changeLogo = (logoUrl) => (e) => (
-  $(e.target).attr('src', logoUrl)
+const App = () => (
+  <div>
+    <Navigation />
+    <Masthead />
+    <Map />
+    <Footer />
+  </div>
 );
 
-$(document).ready(() => {
-  // Togggle the logo on hover
-  $('.index-img')
-    .on('mouseover', changeLogo(logoAlt))
-    .on('mouseout', changeLogo(logo));
-
-  setupMap();
-});
+document.addEventListener('DOMContentLoaded', () => (
+  render(<App/>, document.getElementById('root'))
+));
