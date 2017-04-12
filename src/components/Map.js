@@ -1,5 +1,6 @@
 import React from 'react';
 import Filters from './map/Filters';
+import MapView from './map/MapView';
 
 const Map = () => (
   <div className='row'>
@@ -8,7 +9,7 @@ const Map = () => (
     </div>
 
     <div className='col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-9 col-md-9'>
-      <h1>I'm a map</h1>
+      <MapView />
     </div>
   </div>
 );
