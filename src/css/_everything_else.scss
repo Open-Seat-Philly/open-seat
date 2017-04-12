@@ -70,52 +70,9 @@
   margin: 0 10px 10px 0;
 }
 
-/*ACCORDION STYLE*/
-.panel-heading .accordion-toggle:after {
-  font-family: 'Glyphicons Halflings';
-  content:"\2212";
-  float: right;
-  color: black;
-}
-.panel-heading .accordion-toggle.collapsed:after {
-  content: "\2b";
-}
-.panel-padding {
-  padding: 0;
-}
-
-.checkbox-margin {
-  margin: 0;
-}
-
-.table-margin {
-  margin-bottom: 0;
-}
-
-.accordion-heading {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-  text-align: center;
-}
-
-.center-input {
-  width: 100%;
-}
-
-.button {
-  margin-top: 10px;
-  background-color: white;
-  color: black;
+.btn-round {
   border-radius: 65px;
-  border: 1px solid lightgrey;
   box-shadow: 0 3px 0 0 lightgrey;
-
-  &:hover {
-    color: #2095fc;
-    font-style: italic;
-    box-shadow: 2px grey;
-  }
 }
 
 /*FIX THIS*/

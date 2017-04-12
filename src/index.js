@@ -9,8 +9,12 @@ import './index.scss';
 const App = () => (
   <div>
     <Navigation />
-    <Masthead />
-    <Map />
+
+    <div className='container'>
+      <Masthead />
+      <Map />
+    </div>
+
     <Footer />
   </div>
 );

@@ -1,84 +1,77 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Panel from 'react-bootstrap/lib/Panel';
+import PanelGroup from 'react-bootstrap/lib/PanelGroup';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
-const Filters = () => (
-  <div className="panel-group nav-container accordion-inner" id="accordion">
-    <div className="panel panel-default">
-      <div className="panel-heading">
-      <p className="accordion-heading">Find a seat</p>
-        <h4 className="panel-title border nav-text line-height">
-            <a className="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Elected seats<b className="glyphicon clickable"></b></a>
-        </h4>
-      </div>
-      <div id="collapseOne" className="panel-collapse collapse in">
-        <div className="panel-body panel-padding">
-          <table className="table drop-size borderless table-margin">
-            <tbody>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Judge of Elections</label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Majority Inspector</label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Minority Inspector</label>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="panel-heading">
-        <h4 className="panel-title background border nav-text line-height">
-            <a className="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Appointed seats<b className="glyphicon clickable"></b></a>
-        </h4>
-      </div>
-      <div id="collapseTwo" className="panel-collapse collapse in">
-        <div className="panel-body panel-padding">
-          <table className="table drop-size borderless table-margin">
-            <tbody>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Clerk</label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Machine Inspector</label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="checkbox checkbox-margin">
-                    <label><input type="checkbox" />Bilingual Interpreter</label>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="panel-heading">
-        <p className="accordion-heading">Find your district</p>
-        <input className="center-input" placeholder="address" />
-        <div className=""><button type="button" className="btn button">search</button></div>
-      </div>
-    </div>
-  </div>
+// This is a hack for react-bootstrap's desire to clone
+// elements with new props.
+const PanelGroupHeader = ({ title }) => (
+  <h3>{title}</h3>
 );
 
-export default Filters;
+export default class Filters extends Component {
+  state = {
+    activeKey: null
+  };
+
+  handleSelect = (key) => {
+    if (key === this.state.activeKey) {
+      this.setState({ activeKey: null });
+    } else {
+      this.setState({ activeKey: key });
+    }
+  }
+
+  render () {
+    return (
+      <div className='filters'>
+        <h3>Find a seat</h3>
+
+        <PanelGroup
+          accordion
+          activeKey={this.state.activeKey}
+          onSelect={this.handleSelect}
+        >
+          <Panel header='Elected seats' eventKey='elected'>
+            <ListGroup fill>
+              <ListGroupItem className='checkbox'>
+                <label><input type="checkbox" />Judge of Elections</label>
+              </ListGroupItem>
+              <ListGroupItem className='checkbox'>
+                <label><input type="checkbox" />Majority Inspector</label>
+              </ListGroupItem>
+              <ListGroupItem className='checkbox'>
+                <label><input type="checkbox" />Minority Inspector</label>
+              </ListGroupItem>
+            </ListGroup>
+          </Panel>
+
+          <Panel header='Appointed seats' eventKey='appointed'>
+            <ListGroup fill>
+              <ListGroupItem className='checkbox'>
+                <label><input type='checkbox' />Machine Inspector</label>
+              </ListGroupItem>
+              <ListGroupItem className='checkbox'>
+                <label><input type='checkbox' />Clerk</label>
+              </ListGroupItem>
+              <ListGroupItem className='checkbox'>
+                <label><input type='checkbox' />Bilingual Interpreter</label>
+              </ListGroupItem>
+            </ListGroup>
+          </Panel>
+        </PanelGroup>
+
+        <h3>Find your district</h3>
+
+        <p className='filter-section'>
+          <input type='search' placeholder='address' className='form-control' />
+        </p>
+
+        <p className='filter-section'>
+          <button className='btn btn-default btn-round'>search</button>
+        </p>
+      </div>
+    );
+  }
+}
