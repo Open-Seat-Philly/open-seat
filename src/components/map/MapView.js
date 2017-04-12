@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Mapbox, { Layer } from 'react-mapbox-gl';
+import OpenSeatMarker from './OpenSeatMarker';
+import { openSeatsPropType } from './propTypes';
 import divisionData from '../../data/divisions.json';
 
 const ZOOM = 10;
@@ -10,8 +12,15 @@ const LAYER_OPTIONS = {
     data: divisionData
   }
 };
+
 export default class MapView extends Component {
+  static propTypes = {
+    openSeats: openSeatsPropType.isRequired
+  };
+
   render () {
+    const { openSeats } = this.props;
+
     return (
       <div className='map-view'>
         <Mapbox
@@ -25,6 +34,19 @@ export default class MapView extends Component {
             sourceId='divisions'
             layerOptions={LAYER_OPTIONS}
           />
+
+          <Layer
+            id='markers'
+            type='symbol'
+            layout={{ 'icon-image': 'marker-15' }}
+          >
+            {openSeats.map(openSeat => (
+               <OpenSeatMarker
+                 key={openSeat.id}
+                 {...openSeat}
+               />
+             ))}
+          </Layer>
         </Mapbox>
       </div>
     );
