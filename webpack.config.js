@@ -1,4 +1,3 @@
-const { ProvidePlugin } = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babel = require('@webpack-blocks/babel6');
@@ -47,14 +46,6 @@ module.exports = createConfig([
   }),
 
   addPlugins([
-    // jQuery doesn't play nice with npm. Using this plugin
-    // means that whenever a module references, $, jquery will
-    // be automatically required.
-    new ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
-    }),
-
     // Inject all assets into our html file.
     new HtmlWebpackPlugin({
       inject: 'head',
