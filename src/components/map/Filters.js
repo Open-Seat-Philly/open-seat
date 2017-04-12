@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Panel from 'react-bootstrap/lib/Panel';
 import PanelGroup from 'react-bootstrap/lib/PanelGroup';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
@@ -10,12 +11,36 @@ const PanelGroupHeader = ({ title }) => (
   <h3>{title}</h3>
 );
 
+const PositionCheckbox = ({ selected, value, ...props }) => (
+  <ListGroupItem className='checkbox'>
+    <label>
+      <input
+        type='checkbox'
+        name='positions[]'
+        checked={selected.indexOf(value) > -1}
+        value={value}
+        {...props}
+      />{value}
+    </label>
+  </ListGroupItem>
+);
+
+const INITIAL_FILTERS = {
+  address: null,
+  positions: []
+}
+
 export default class Filters extends Component {
-  state = {
-    activeKey: null
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
   };
 
-  handleSelect = (key) => {
+  state = {
+    activeKey: null,
+    filters: INITIAL_FILTERS
+  };
+
+  handleAccordion = (key) => {
     if (key === this.state.activeKey) {
       this.setState({ activeKey: null });
     } else {
@@ -23,7 +48,43 @@ export default class Filters extends Component {
     }
   }
 
+  handlePositionChange = (event) => {
+    const { filters } = this.state;
+    const { positions } = filters;
+    const { value } = event.target;
+
+    const nextPositions = positions.indexOf(value) > -1
+      ? positions.filter(v => v !== value)
+      : [...positions, value]
+
+    this.setState({
+      filters: {
+        ...filters,
+        positions: nextPositions
+      }
+    });
+  }
+
+  handleAddressChange = (event) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        address: event.target.value
+      }
+    })
+  }
+
+  handleSubmit = () => {
+    this.props.onSubmit(this.state.filters);
+  };
+
+  handleReset = () => {
+    this.setState({ filters: INITIAL_FILTERS }, this.handleSubmit);
+  }
+
   render () {
+    const { positions } = this.state.filters;
+
     return (
       <div className='filters'>
         <h3>Find a seat</h3>
@@ -31,33 +92,45 @@ export default class Filters extends Component {
         <PanelGroup
           accordion
           activeKey={this.state.activeKey}
-          onSelect={this.handleSelect}
+          onSelect={this.handleAccordion}
         >
           <Panel header='Elected seats' eventKey='elected'>
             <ListGroup fill>
-              <ListGroupItem className='checkbox'>
-                <label><input type="checkbox" />Judge of Elections</label>
-              </ListGroupItem>
-              <ListGroupItem className='checkbox'>
-                <label><input type="checkbox" />Majority Inspector</label>
-              </ListGroupItem>
-              <ListGroupItem className='checkbox'>
-                <label><input type="checkbox" />Minority Inspector</label>
-              </ListGroupItem>
+              <PositionCheckbox
+                value='Judge of Elections'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
+              <PositionCheckbox
+                value='Majority Inspector'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
+              <PositionCheckbox
+                value='Minority Inspector'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
             </ListGroup>
           </Panel>
 
           <Panel header='Appointed seats' eventKey='appointed'>
             <ListGroup fill>
-              <ListGroupItem className='checkbox'>
-                <label><input type='checkbox' />Machine Inspector</label>
-              </ListGroupItem>
-              <ListGroupItem className='checkbox'>
-                <label><input type='checkbox' />Clerk</label>
-              </ListGroupItem>
-              <ListGroupItem className='checkbox'>
-                <label><input type='checkbox' />Bilingual Interpreter</label>
-              </ListGroupItem>
+              <PositionCheckbox
+                value='Machine Inspector'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
+              <PositionCheckbox
+                value='Clerk'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
+              <PositionCheckbox
+                value='Bilingual Interpreter'
+                selected={positions}
+                onChange={this.handlePositionChange}
+              />
             </ListGroup>
           </Panel>
         </PanelGroup>
@@ -65,11 +138,24 @@ export default class Filters extends Component {
         <h3>Find your district</h3>
 
         <p className='filter-section'>
-          <input type='search' placeholder='address' className='form-control' />
+          <input
+            name='address'
+            type='search'
+            placeholder='address'
+            className='form-control'
+            value={this.state.filters.address || ''}
+            onChange={this.handleAddressChange}
+          />
         </p>
 
         <p className='filter-section'>
-          <button className='btn btn-default btn-round'>search</button>
+          <button onClick={this.handleSubmit} className='btn btn-default btn-round'>
+            search
+          </button>
+
+          <button onClick={this.handleReset} className='btn btn-default btn-round'>
+            reset
+          </button>
         </p>
       </div>
     );
