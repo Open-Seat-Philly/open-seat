@@ -4,7 +4,12 @@ import MapView from './map/MapView';
 
 const SAMPLE_DATA = [{
   id: 1,
-  coordinates: [-75.1452, 39.9826]
+  coordinates: [-75.1452, 39.9826],
+  name: 'Judge of Elections'
+}, {
+  id: 2,
+  coordinates: [-75.12, 39.9826],
+  name: 'Machine Inspector'
 }];
 
 const Map = () => (

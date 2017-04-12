@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 
-export const openSeatPropType = {
+export const openSeatPropType = PropTypes.shape({
   // A UNIQUE ID representing the specific seat
-  id: PropTypes.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
 
   // The coordinates to place the marker on the map
   coordinates: PropTypes.arrayOf(PropTypes.number).isRequired
-};
+});
 
-export const openSeatsPropType = PropTypes.arrayOf(
-  PropTypes.shape(openSeatPropType)
-);
+export const openSeatsPropType = PropTypes.arrayOf(openSeatPropType);

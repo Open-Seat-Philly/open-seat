@@ -1,11 +1,32 @@
-import React from 'react';
-import { Feature } from 'react-mapbox-gl';
+import React, { Component } from 'react';
+import { Marker } from 'react-mapbox-gl';
+import PropTypes from 'prop-types';
 import { openSeatPropType } from './propTypes';
 
-const OpenSeatMarker = ({ id, coordinates }) => (
-  <Feature coordinates={coordintates} />
-);
+export default class OpenSeatMarker extends Component {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    openSeat: openSeatPropType.isRequired
+  };
 
-OpenSeatMarker.propTypes = openSeatPropType.isRequired;
+  handleClick = () => {
+    this.props.onClick(this.props.openSeat);
+  }
 
-export default OpenSeatMarker;
+  render () {
+    const { openSeat } = this.props;
+    const { coordinates } = openSeat;
+
+    return (
+      <Marker
+        onClick={this.handleClick}
+        coordinates={coordinates}
+      >
+        <i
+          className='glyphicon glyphicon-map-marker'
+          style={{color: 'white'}}
+        />
+      </Marker>
+    );
+  }
+}

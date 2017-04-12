@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Mapbox, { Layer } from 'react-mapbox-gl';
 import OpenSeatMarker from './OpenSeatMarker';
+import OpenSeatPopup from './OpenSeatPopup';
 import { openSeatsPropType } from './propTypes';
 import divisionData from '../../data/divisions.json';
 
@@ -18,8 +19,21 @@ export default class MapView extends Component {
     openSeats: openSeatsPropType.isRequired
   };
 
+  state = {
+    selectedOpenSeat: null
+  };
+
+  handleMarkerClick = (openSeat) => {
+    this.setState({ selectedOpenSeat: openSeat });
+  }
+
+  handlePopupClose = () => {
+    this.setState({ selectedOpenSeat: null });
+  }
+
   render () {
     const { openSeats } = this.props;
+    const { selectedOpenSeat } = this.state;
 
     return (
       <div className='map-view'>
@@ -35,18 +49,20 @@ export default class MapView extends Component {
             layerOptions={LAYER_OPTIONS}
           />
 
-          <Layer
-            id='markers'
-            type='symbol'
-            layout={{ 'icon-image': 'marker-15' }}
-          >
-            {openSeats.map(openSeat => (
-               <OpenSeatMarker
-                 key={openSeat.id}
-                 {...openSeat}
-               />
-             ))}
-          </Layer>
+          {openSeats.map(openSeat => (
+            <OpenSeatMarker
+              key={openSeat.id}
+              onClick={this.handleMarkerClick}
+              openSeat={openSeat}
+            />
+          ))}
+
+          {selectedOpenSeat && (
+            <OpenSeatPopup
+              openSeat={selectedOpenSeat}
+              onClose={this.handlePopupClose}
+            />
+          )}
         </Mapbox>
       </div>
     );
