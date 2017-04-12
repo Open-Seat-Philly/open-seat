@@ -1,31 +1,24 @@
+import { render } from 'react-dom';
+import React from 'react';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import Masthead from './components/Masthead';
+import Map from './components/Map';
 import './index.scss';
-import logo from './images/logos/logo-xs.svg';
-import logoAlt from './images/logos/logo-xs2.svg';
-import $ from 'jquery';
-import 'bootstrap-sass/assets/javascripts/bootstrap';
-import mapboxgl, { Map } from 'mapbox-gl';
-import 'mapbox.js';
 
-mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+const App = () => (
+  <div>
+    <Navigation />
 
-const changeLogo = (logoUrl) => (e) => (
-  $(e.target).attr('src', logoUrl)
+    <div className='container'>
+      <Masthead />
+      <Map />
+    </div>
+
+    <Footer />
+  </div>
 );
 
-$(document).ready(() => {
-  // Collapse the collapses by default
-  $('#collapseOne, #collapseTwo').collapse('hide');
-
-  // Togggle the logo on hover
-  $('.index-img')
-    .on('mouseover', changeLogo(logoAlt))
-    .on('mouseout', changeLogo(logo));
-
-  // Setup the map
-  const map = new Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-    center: [-75.1452, 39.9826], // Philadelphia starting position
-    zoom: 10 // starting zoom
-  });
-});
+document.addEventListener('DOMContentLoaded', () => (
+  render(<App/>, document.getElementById('root'))
+));

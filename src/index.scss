@@ -7,7 +7,6 @@
 @import url($google-font-url);
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~mapbox-gl/dist/mapbox-gl";
-@import "~mapbox.js/theme/style.css";
 
 @import "./css/overrides";
 @import "./css/layout";
@@ -18,3 +17,4 @@
  */
 
 @import "./css/everything_else";
+@import "./css/components/filters";

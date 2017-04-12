@@ -47,83 +47,29 @@
 }
 
 /*MAIN CONTENT STUFF*/
-.header-margin {
-  margin-top: 20px;
-}
-.main-title {
-  text-align: center;
-  font-weight: bold;
-}
-.main-title>img {
-  max-width: 210px;
-}
-.summary {
-  text-align: center;
+.masthead {
+  padding-top: $navbar-height;
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+
+    > img {
+      max-width: 210px;
+    }
+  }
 }
 
-/*MAP STUFF*/
-.center-map {
+.map-view .mapboxgl-map {
   margin: 0 auto;
-}
-.map-size {
   width: 100%;
   height: 500px;
   margin: 0 10px 10px 0;
 }
 
-/*ACCORDION STYLE*/
-
-.panel {
-  .accordian-toggle {
-    &:after {
-      font-family: 'Glyphicons Halflings';
-      content:"\2212";
-      float: right;
-      color: black;
-    }
-
-    &.collapsed:after {
-      content: "\2b";
-    }
-  }
-
-  .panel-padding {
-    padding: 0;
-  }
-}
-
-.checkbox-margin {
-  margin: 0;
-}
-
-.table-margin {
-  margin-bottom: 0;
-}
-
-.accordion-heading {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-  text-align: center;
-}
-
-.center-input {
-  width: 100%;
-}
-
-.button {
-  margin-top: 10px;
-  background-color: white;
-  color: black;
+.btn-round {
   border-radius: 65px;
-  border: 1px solid lightgrey;
   box-shadow: 0 3px 0 0 lightgrey;
-
-  &:hover {
-    color: #2095fc;
-    font-style: italic;
-    box-shadow: 2px grey;
-  }
 }
 
 /*FIX THIS*/

@@ -1,4 +1,3 @@
-const { ProvidePlugin } = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babel = require('@webpack-blocks/babel6');
@@ -19,15 +18,8 @@ const {
 // should use dotenv to load this config from an environment file.
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoianp3ZWliZWwiLCJhIjoiY2owcGt2cjFmMDBzejMzbXIxN3g2M3ZydSJ9.cGaL9WA2Zbdt1ahVcfqvAw';
 
-const htmlLoader = () => () => ({
-  module: {
-    loaders: [
-      {
-        test: /\.html$/,
-        loaders: ['html-loader']
-      }
-    ]
-  }
+const addLoader = (loaderConfig) => () => ({
+  module: { loaders: [loaderConfig] }
 });
 
 module.exports = createConfig([
@@ -36,7 +28,16 @@ module.exports = createConfig([
 
   babel(),      // Enable ES6 syntax
   sass(),       // Use sass instead of CSS
-  htmlLoader(), // Require images when they're referenced
+
+  addLoader({
+    test: /\.html$/,
+    loaders: ['html-loader?attrs=img:src link:href']
+  }),
+
+  addLoader({
+    test: /\.json$/,
+    loaders: ['json-loader']
+  }),
 
   // Pass some information into the build environment.
   defineConstants({
@@ -45,14 +46,6 @@ module.exports = createConfig([
   }),
 
   addPlugins([
-    // jQuery doesn't play nice with npm. Using this plugin
-    // means that whenever a module references, $, jquery will
-    // be automatically required.
-    new ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
-    }),
-
     // Inject all assets into our html file.
     new HtmlWebpackPlugin({
       inject: 'head',
