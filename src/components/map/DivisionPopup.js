@@ -29,6 +29,15 @@ const DivisionPopup = ({ division, openSeats, onClose }) => {
   return (
     <Popup coordinates={center}>
       <h5>I am a popup</h5>
+      {openSeats.map(openSeat => (
+         <span key={openSeat.id}>
+           {openSeat.name}
+         </span>
+      ))}
+
+      <button onClick={onClose}>
+        Close
+      </button>
     </Popup>
   );
 };
