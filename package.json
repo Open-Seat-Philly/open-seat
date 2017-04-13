@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "geolib": "^2.0.22",
     "prop-types": "^15.5.7",
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.8",
