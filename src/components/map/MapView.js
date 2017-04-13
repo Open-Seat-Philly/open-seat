@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import Mapbox, { Layer } from 'react-mapbox-gl';
-import OpenSeatMarker from './OpenSeatMarker';
-import OpenSeatPopup from './OpenSeatPopup';
+import Mapbox, { Layer, Feature } from 'react-mapbox-gl';
+import DivisionPopup from './DivisionPopup';
 import { openSeatsPropType } from './propTypes';
 import divisionData from '../../data/divisions.json';
 
 const ZOOM = 10;
 const CENTER = [-75.1452, 39.9826];
-const LAYER_OPTIONS = {
-  source: {
-    type: 'geojson',
-    data: divisionData
-  }
+
+// TODO: This function should return only the open
+// seats in the specified division.
+const getOpenSeats = (division, openSeats) => {
+  return openSeats;
+};
+
+const INITIAL_STATE = {
+  selectedDivision: null,
+  selectedDivisionSeats: null
 };
 
 export default class MapView extends Component {
@@ -19,21 +23,27 @@ export default class MapView extends Component {
     openSeats: openSeatsPropType.isRequired
   };
 
-  state = {
-    selectedOpenSeat: null
-  };
+  state = INITIAL_STATE;
 
-  handleMarkerClick = (openSeat) => {
-    this.setState({ selectedOpenSeat: openSeat });
+  handleDivisionClick = ({ feature }) => {
+    const seats = getOpenSeats(
+      feature,
+      this.props.openSeats
+    );
+
+    this.setState({
+      selectedDivision: feature,
+      selectedDivisionSeats: seats
+    });
   }
 
   handlePopupClose = () => {
-    this.setState({ selectedOpenSeat: null });
+    this.setState(INITIAL_STATE);
   }
 
   render () {
     const { openSeats } = this.props;
-    const { selectedOpenSeat } = this.state;
+    const { selectedDivision, selectedDivisionSeats } = this.state;
 
     return (
       <div className='map-view'>
@@ -43,23 +53,21 @@ export default class MapView extends Component {
           style='mapbox://styles/mapbox/dark-v9'
           accessToken={process.env.MAPBOX_TOKEN}
         >
-          <Layer
-            type='line'
-            sourceId='divisions'
-            layerOptions={LAYER_OPTIONS}
-          />
+          <Layer type='fill'>
+            {divisionData.features.map(division => (
+              <Feature
+                key={division.properties['OBJECTID']}
+                onClick={this.handleDivisionClick}
+                coordinates={division.geometry.coordinates}
+                properties={division.properties}
+              />
+            ))}
+          </Layer>
 
-          {openSeats.map(openSeat => (
-            <OpenSeatMarker
-              key={openSeat.id}
-              onClick={this.handleMarkerClick}
-              openSeat={openSeat}
-            />
-          ))}
-
-          {selectedOpenSeat && (
-            <OpenSeatPopup
-              openSeat={selectedOpenSeat}
+          {selectedDivision && (
+            <DivisionPopup
+              division={selectedDivision}
+              openSeats={selectedDivisionSeats}
               onClose={this.handlePopupClose}
             />
           )}
