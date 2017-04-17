@@ -4,6 +4,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import PanelGroup from 'react-bootstrap/lib/PanelGroup';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import Geocoder from '@mapbox/react-geocoder';
 
 // This is a hack for react-bootstrap's desire to clone
 // elements with new props.
