@@ -1,0 +1,29 @@
+// Popup
+#popup {
+  text-align: center;
+
+  .mapboxgl-popup {
+    width: 175px;
+    border: 8px solid rgba(32, 149, 252, .9);
+    border-radius: 12px;
+  }
+
+  button {
+    float: right;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  h5 {
+    text-align: center;
+    text-decoration: underline;
+  }
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+}

@@ -27,18 +27,33 @@ const DivisionPopup = ({ division, openSeats, onClose }) => {
   );
 
   return (
-    <Popup coordinates={center}>
-      <h5>I am a popup</h5>
-      {openSeats.map(openSeat => (
-         <span key={openSeat.id}>
-           {openSeat.name}
-         </span>
-      ))}
-
-      <button onClick={onClose}>
-        Close
+    <div id="popup">
+     <Popup coordinates={center}>
+      <button type="button" class="close" aria-label="Close" onClick={onClose}>
+        <span aria-hidden="true">X</span>
       </button>
-    </Popup>
+      <h5>Division (#)</h5>
+      <h5>Open Seats:</h5>
+        <ul>
+          <div>{openSeats.map(openSeat => (
+           <a href='#'>
+            <li key={openSeat.id}>
+             {openSeat.name}
+            </li></a>
+        ))}
+          </div>
+        </ul>
+      <div>
+        <h5>Resources</h5>
+          <ul>
+            <li><a href='#'>Requirements to Run</a></li>
+            <li><a href='#'>Calendar</a></li>
+            <li><a href='#'>Forms</a></li>
+            <li><a href='#'>Position Duties</a></li>
+          </ul>
+      </div>
+   </Popup>
+  </div>
   );
 };
 
