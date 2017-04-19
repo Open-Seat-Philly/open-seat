@@ -27,12 +27,12 @@ const DivisionPopup = ({ division, openSeats, onClose }) => {
   );
 
   return (
-    <div id="popup">
+    <div className="popup">
      <Popup coordinates={center}>
-      <button type="button" class="close" aria-label="Close" onClick={onClose}>
+      <button type="button" className="close" aria-label="Close" onClick={onClose}>
         <span aria-hidden="true">X</span>
       </button>
-      <h5>Division (#)</h5>
+      <h5>Division {division.properties.DIVISION_NUM}</h5>
       <h5>Open Seats:</h5>
         <ul>
           <div>{openSeats.map(openSeat => (
