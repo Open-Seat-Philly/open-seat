@@ -37,7 +37,7 @@ export default class MapView extends Component {
     });
   }
 
-  handlePopupClose = () => {
+  clearSelectedDivision = () => {
     this.setState(INITIAL_STATE);
   }
 
@@ -52,6 +52,7 @@ export default class MapView extends Component {
           center={CENTER}
           style='mapbox://styles/mapbox/dark-v9'
           accessToken={process.env.MAPBOX_TOKEN}
+          onClick={this.clearSelectedDivision}
         >
           <Layer type='fill'>
             {divisionData.features.map(division => (
@@ -68,7 +69,7 @@ export default class MapView extends Component {
             <DivisionPopup
               division={selectedDivision}
               openSeats={selectedDivisionSeats}
-              onClose={this.handlePopupClose}
+              onClose={this.clearSelectedDivision}
             />
           )}
         </Mapbox>
