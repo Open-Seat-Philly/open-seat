@@ -67,12 +67,14 @@ export default class Filters extends Component {
   }
 
   handleAddressChange = (event) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        address: event.target.value
-      }
-    })
+    console.log(arguments)
+    // this.setState({
+    //   filters: {
+    //     ...this.state.filters,
+    //     address: event.target.value
+    //   }
+    // });
+
   }
 
   handleSubmit = () => {
@@ -139,13 +141,15 @@ export default class Filters extends Component {
         <h3>Find your district</h3>
 
         <p className='filter-section'>
-          <input
-            name='address'
-            type='search'
-            placeholder='address'
-            className='form-control'
+          <Geocoder
             value={this.state.filters.address || ''}
-            onChange={this.handleAddressChange}
+            onSelect={this.handleAddressChange}
+            // name='address'
+            // type='search'
+            // placeholder='address'
+            // className='form-control'
+
+            //onChange={this.handleAddressChange}
           />
         </p>
 
