@@ -66,15 +66,20 @@ export default class Filters extends Component {
     });
   }
 
-  handleAddressChange = (event) => {
-    console.log(arguments)
-    // this.setState({
-    //   filters: {
-    //     ...this.state.filters,
-    //     address: event.target.value
-    //   }
-    // });
-
+  /*
+   * This function will be called when an address is selected from
+   * the Geocoder. The first argument will be the text that the user
+   * put in the text box. The second will be an item from the array
+   * of features documented here:
+   *   https://www.mapbox.com/api-documentation/#response-format
+   */
+  handleAddressChange = (addressText, geocodedAddress) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        address: geocodedAddress
+      }
+    });
   }
 
   handleSubmit = () => {
@@ -144,12 +149,6 @@ export default class Filters extends Component {
           <Geocoder
             value={this.state.filters.address || ''}
             onSelect={this.handleAddressChange}
-            // name='address'
-            // type='search'
-            // placeholder='address'
-            // className='form-control'
-
-            //onChange={this.handleAddressChange}
           />
         </p>
 
