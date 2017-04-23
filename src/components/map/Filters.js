@@ -77,7 +77,7 @@ export default class Filters extends Component {
     this.setState({
       filters: {
         ...this.state.filters,
-        address: geocodedAddress
+        address: geocodedAddress.center
       }
     });
   }
@@ -147,7 +147,7 @@ export default class Filters extends Component {
 
         <p className='filter-section'>
           <Geocoder
-            value={this.state.filters.address || ''}
+            value={this.state.value}
             onSelect={this.handleAddressChange}
           />
         </p>
