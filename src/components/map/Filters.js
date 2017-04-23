@@ -147,7 +147,6 @@ export default class Filters extends Component {
 
         <p className='filter-section'>
           <Geocoder
-            value={this.state.value}
             onSelect={this.handleAddressChange}
           />
         </p>
