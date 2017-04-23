@@ -56,9 +56,9 @@ export default class MapView extends Component {
           accessToken={process.env.MAPBOX_TOKEN}
         >
 
-        //divisions layer outlines every division
+        {/*divisions layer outlines every division*/}
           <Layer
-            id='divisions'
+            id='allDivisions'
             type='line'
             sourceId='divisions'
             layerOptions={{
@@ -70,7 +70,7 @@ export default class MapView extends Component {
             paint={{'line-width':.5}}
           />
 
-          //seats layer colors in districts with uncontested seats
+          {/*seats layer colors in districts with uncontested seats*/}
           <Layer
             id='seats'
             type='fill'
