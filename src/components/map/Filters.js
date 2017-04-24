@@ -4,6 +4,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import PanelGroup from 'react-bootstrap/lib/PanelGroup';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import Geocoder from '../Geocoder';
 
 // This is a hack for react-bootstrap's desire to clone
 // elements with new props.
@@ -65,13 +66,20 @@ export default class Filters extends Component {
     });
   }
 
-  handleAddressChange = (event) => {
+  /*
+   * This function will be called when an address is selected from
+   * the Geocoder. The first argument will be the text that the user
+   * put in the text box. The second will be an item from the array
+   * of features documented here:
+   *   https://www.mapbox.com/api-documentation/#response-format
+   */
+  handleAddressChange = (addressText, geocodedAddress) => {
     this.setState({
       filters: {
         ...this.state.filters,
-        address: event.target.value
+        address: geocodedAddress.center
       }
-    })
+    });
   }
 
   handleSubmit = () => {
@@ -138,13 +146,8 @@ export default class Filters extends Component {
         <h3>Find your district</h3>
 
         <p className='filter-section'>
-          <input
-            name='address'
-            type='search'
-            placeholder='address'
-            className='form-control'
-            value={this.state.filters.address || ''}
-            onChange={this.handleAddressChange}
+          <Geocoder
+            onSelect={this.handleAddressChange}
           />
         </p>
 

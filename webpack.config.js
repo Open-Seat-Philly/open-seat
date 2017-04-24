@@ -23,7 +23,7 @@ const addLoader = (loaderConfig) => () => ({
 });
 
 module.exports = createConfig([
-  entryPoint('./src/index.js'),
+  entryPoint(['whatwg-fetch', './src/index.js']),
   setOutput('./build/bundle.js'),
 
   babel(),      // Enable ES6 syntax

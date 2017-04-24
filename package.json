@@ -36,12 +36,16 @@
     "url-loader": "^0.5.8"
   },
   "dependencies": {
+    "@mapbox/react-geocoder": "git+https://github.com/open-seat-philly/react-geocoder.git#update-react",
     "bootstrap-sass": "^3.3.7",
+    "debounce-promise": "^3.0.1",
     "geolib": "^2.0.22",
     "prop-types": "^15.5.7",
     "react": "^15.5.4",
+    "react-autocomplete": "^1.4.4",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.5.4",
-    "react-mapbox-gl": "^1.7.4"
+    "react-mapbox-gl": "^1.7.4",
+    "whatwg-fetch": "^2.0.3"
   }
 }
