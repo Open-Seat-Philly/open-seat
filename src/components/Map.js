@@ -19,12 +19,15 @@ export default class Map extends Component {
   state = INITIAL_STATE
 
   handleChange = (filters) => {
+    const divisions = filterDivisions(
+      this.state.divisions,
+      filters
+    );
+
     this.setState({
       filters,
-      divisions: filterDivisions(
-        this.state.divisions,
-        filters
-      )
+      divisions,
+      selectedDivision: divisions[0]
     });
   }
 
