@@ -1,12 +1,12 @@
 import divisionData from '../../data/divisions.json';
-import openSeatsData from '../../data/OpenSeats.json';
+import openSeatsData from '../../data/open-seats.json';
 
 // Is the given seat in the given division?
 const seatInDivision = (seat, division) => {
   const comboNum = division.properties.DIVISION_NUM;
   const wardNum = comboNum.slice(0, 2);
   const divisionNum = comboNum.slice(2);
-  return seat.WARD === wardNum && seat.DIVISION === divisionNum;
+  return seat.ward === wardNum && seat.division === divisionNum;
 };
 
 // Does the division have any open seats?
@@ -20,9 +20,14 @@ const divisionHasOpenSeats = (division) => {
   return false;
 };
 
+// Get the open seats within a division
+export const getDivisionOpenSeats = (division) => (
+  openSeatsData.filter(seat => seatInDivision(seat, division))
+);
+
 // Filter all divisions, and find the ones having seats
-const divisionsHavingSeats = divisionData.features.filter(
+export const divisionsHavingSeats = divisionData.features.filter(
   divisionHasOpenSeats
 );
 
-export default divisionsHavingSeats;
+export default divisionData;

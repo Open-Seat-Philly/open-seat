@@ -2,39 +2,26 @@ import React, { Component } from 'react';
 import Mapbox, { Layer, Feature } from 'react-mapbox-gl';
 import DivisionPopup from './DivisionPopup';
 import { openSeatsPropType } from './propTypes';
-import divisionData from '../../data/divisions.json';
-import divisionsHavingSeats from './divisionsHavingSeats';
+import divisionData, {
+  getDivisionOpenSeats,
+  divisionsHavingSeats
+} from './divisions';
 
 const ZOOM = 10;
 const CENTER = [-75.1452, 39.9826];
 
-// TODO: This function should return only the open
-// seats in the specified division.
-const getOpenSeats = (division, openSeats) => {
-  return openSeats;
-};
-
 const INITIAL_STATE = {
   selectedDivision: null,
-  selectedDivisionSeats: null
+  selectedOpenSeats: []
 };
 
 export default class MapView extends Component {
-  static propTypes = {
-    openSeats: openSeatsPropType.isRequired
-  };
-
   state = INITIAL_STATE;
 
   handleDivisionClick = ({ feature }) => {
-    const seats = getOpenSeats(
-      feature,
-      this.props.openSeats
-    );
-
     this.setState({
       selectedDivision: feature,
-      selectedDivisionSeats: seats
+      selectedOpenSeats: getDivisionOpenSeats(feature)
     });
   }
 
@@ -43,9 +30,10 @@ export default class MapView extends Component {
   }
 
   render () {
-    const { openSeats } = this.props;
-    const { selectedDivision, selectedDivisionSeats } = this.state;
-
+    const {
+      selectedDivision,
+      selectedOpenSeats
+    } = this.state;
 
     return (
       <div className='map-view'>
@@ -56,7 +44,7 @@ export default class MapView extends Component {
           accessToken={process.env.MAPBOX_TOKEN}
         >
 
-        {/*divisions layer outlines every division*/}
+          {/*divisions layer outlines every division*/}
           <Layer
             id='allDivisions'
             type='line'
@@ -92,14 +80,12 @@ export default class MapView extends Component {
           {selectedDivision && (
             <DivisionPopup
               division={selectedDivision}
-              openSeats={selectedDivisionSeats}
+              openSeats={selectedOpenSeats}
               onClose={this.handlePopupClose}
             />
           )}
         </Mapbox>
       </div>
     );
-
-
   }
 }
