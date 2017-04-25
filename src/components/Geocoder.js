@@ -63,6 +63,14 @@ export default class Geocoder extends Component {
     items: []
   };
 
+  handleSelect = (_text, address) => {
+    this.setState({
+      value: address.place_name
+    });
+
+    this.props.onSelect(address);
+  }
+
   handleChange = (event) => {
     const { value } = event.target;
 
@@ -82,7 +90,7 @@ export default class Geocoder extends Component {
         getItemValue={getItemValue}
         renderItem={renderItem}
         onChange={this.handleChange}
-        onSelect={this.props.onSelect}
+        onSelect={this.handleSelect}
         value={this.state.value}
         inputProps={INPUT_PROPS}
         wrapperStyle={WRAPPER_STYLE}

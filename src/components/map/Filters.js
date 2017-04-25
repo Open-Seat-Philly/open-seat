@@ -70,10 +70,10 @@ export default class Filters extends Component {
    * of features documented here:
    *   https://www.mapbox.com/api-documentation/#response-format
    */
-  handleAddressChange = (addressText, geocodedAddress) => {
+  handleAddressChange = (address) => {
     this.props.onChange({
       ...this.props.filters,
-      address: geocodedAddress
+      address
     });
   }
 
