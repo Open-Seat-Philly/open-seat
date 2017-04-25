@@ -1,22 +1,31 @@
 import { render } from 'react-dom';
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import Masthead from './components/Masthead';
-import Map from './components/Map';
+import MapPage from './pages/MapPage';
+import ResourcesPage from './pages/ResourcesPage';
+import ResultsPage from './pages/ResultsPage';
+import CalendarPage from './pages/CalendarPage';
+import CommunityPage from './pages/CommunityPage';
 import './index.scss';
 
 const App = () => (
-  <div>
-    <Navigation />
+  <Router>
+    <div>
+      <Navigation />
 
-    <div className='container'>
-      <Masthead />
-      <Map />
+      <div className='container main'>
+        <Route exact path='/' component={MapPage} />
+        <Route path='/resources' component={ResourcesPage} />
+        <Route path='/results' component={ResultsPage} />
+        <Route path='/calendar' component={CalendarPage} />
+        <Route path='/community' component={CommunityPage} />
+      </div>
+
+      <Footer />
     </div>
-
-    <Footer />
-  </div>
+  </Router>
 );
 
 document.addEventListener('DOMContentLoaded', () => (

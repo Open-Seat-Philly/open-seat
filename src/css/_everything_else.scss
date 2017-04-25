@@ -3,53 +3,17 @@
   font-family: 'Questrial', sans-serif;
 }
 
-/*NAVBAR STUFF*/
-.nav-style {
-  background-color: rgba(32, 149, 252, .9);
-  border-bottom: none;
-}
-.tab-height>li>a {
-  height: 50px;
-}
-.tab-color {
-  border-bottom: none;
-}
-.button-color {
-  background-color: rgb(244, 244, 31);
-}
-.icon-bar-color {
-  background-color: black;
-}
-/*NAVBAR LINK STYLE*/
-.tab-color>li>a:link {
-  color: black;
-}
-.tab-color>li>a:visited {
-  color: black;
-  font-style: italic;
-}
-.tab-color>li>a:hover {
-  background-color: rgb(244, 244, 31);
-  color: black;
-  text-decoration: underline;
-}
-.tab-color>li>a:active {
-  background-color: rgb(244, 244, 31);
-  color: black;
-  text-decoration: underline;
-}
 /*LOGO IN NAVBAR*/
 .logo-xs{
   padding: 0;
 }
+
 .logo-xs img{
   max-height: 72px;
 }
 
 /*MAIN CONTENT STUFF*/
 .masthead {
-  padding-top: $navbar-height;
-
   h1 {
     text-align: center;
     font-weight: bold;
