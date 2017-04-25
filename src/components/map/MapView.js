@@ -3,6 +3,7 @@ import Mapbox, { Layer, Feature } from 'react-mapbox-gl';
 import DivisionPopup from './DivisionPopup';
 import { openSeatsPropType } from './propTypes';
 import divisionData from '../../data/divisions.json';
+import divisionsHavingSeats from './divisionsHavingSeats';
 
 const ZOOM = 10;
 const CENTER = [-75.1452, 39.9826];
@@ -45,6 +46,7 @@ export default class MapView extends Component {
     const { openSeats } = this.props;
     const { selectedDivision, selectedDivisionSeats } = this.state;
 
+
     return (
       <div className='map-view'>
         <Mapbox
@@ -53,8 +55,31 @@ export default class MapView extends Component {
           style='mapbox://styles/mapbox/dark-v9'
           accessToken={process.env.MAPBOX_TOKEN}
         >
-          <Layer type='fill'>
-            {divisionData.features.map(division => (
+
+        {/*divisions layer outlines every division*/}
+          <Layer
+            id='allDivisions'
+            type='line'
+            sourceId='divisions'
+            layerOptions={{
+              source: {
+                type: 'geojson',
+                data: divisionData
+              }
+            }}
+            paint={{'line-width':.5}}
+          />
+
+          {/*seats layer colors in districts with uncontested seats*/}
+          <Layer
+            id='seats'
+            type='fill'
+            paint={{
+              "fill-color":"rgba(32, 149, 252, .9)",
+              "fill-opacity":.25
+            }}
+          >
+            {divisionsHavingSeats.map(division => (
               <Feature
                 key={division.properties['OBJECTID']}
                 onClick={this.handleDivisionClick}
@@ -74,5 +99,7 @@ export default class MapView extends Component {
         </Mapbox>
       </div>
     );
+
+
   }
 }
