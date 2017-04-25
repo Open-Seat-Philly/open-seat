@@ -5,11 +5,10 @@ import DivisionPopup from './DivisionPopup';
 import { openSeatsPropType } from './propTypes';
 import divisionData, { getDivisionOpenSeats } from './divisions';
 
-const ZOOM = 10;
-const CENTER = [-75.1452, 39.9826];
-
 export default class MapView extends Component {
   static propTypes = {
+    zoom: PropTypes.array.isRequired,
+    center: PropTypes.array.isRequired,
     onDivisionClick: PropTypes.func.isRequired,
     onPopupClose: PropTypes.func.isRequired,
     divisions: PropTypes.array.isRequired,
@@ -19,6 +18,9 @@ export default class MapView extends Component {
   render () {
     const {
       selectedDivision,
+      zoom,
+      center,
+      popupCenter,
       divisions,
       onDivisionClick,
       onPopupClose
@@ -27,8 +29,8 @@ export default class MapView extends Component {
     return (
       <div className='map-view'>
         <Mapbox
-          zoom={[ZOOM]}
-          center={CENTER}
+          zoom={zoom}
+          center={center}
           style='mapbox://styles/mapbox/dark-v9'
           accessToken={process.env.MAPBOX_TOKEN}
         >
@@ -68,6 +70,7 @@ export default class MapView extends Component {
 
           {selectedDivision && (
             <DivisionPopup
+              center={popupCenter}
               division={selectedDivision}
               openSeats={getDivisionOpenSeats(selectedDivision)}
               onClose={onPopupClose}

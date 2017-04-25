@@ -1,3 +1,4 @@
+import { isPointInside } from './geometry';
 import divisionData from '../../data/divisions.json';
 import openSeatsData from '../../data/open-seats.json';
 
@@ -30,9 +31,22 @@ export const divisionsHavingSeats = divisionData.features.filter(
   divisionHasOpenSeats
 );
 
-// Not yet implemented.
-export const filterDivisions = (divisions, filters) => {
-  return divisions;
-};
+// This is hilariously inefficient.
+export const filterDivisions = (divisions, filters) => (
+  divisions.filter(division => {
+    if (filters.positions.length) {
+      console.warn('Positions filter is not implemented');
+    }
+
+    if (filters.address) {
+      return isPointInside(
+        filters.address.center,
+        division.geometry.coordinates[0]
+      );
+    }
+
+    return true;
+  })
+);
 
 export default divisionData;

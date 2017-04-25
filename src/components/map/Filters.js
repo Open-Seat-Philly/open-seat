@@ -70,10 +70,10 @@ export default class Filters extends Component {
    * of features documented here:
    *   https://www.mapbox.com/api-documentation/#response-format
    */
-  handleAddressChange = (addressText, geocodedAddress) => {
+  handleAddressChange = (address) => {
     this.props.onChange({
       ...this.props.filters,
-      address: geocodedAddress
+      address
     });
   }
 
@@ -132,17 +132,17 @@ export default class Filters extends Component {
 
         <h3>Find your district</h3>
 
-        <p className='filter-section'>
+        <div className='filter-section'>
           <Geocoder
             onSelect={this.handleAddressChange}
           />
-        </p>
+        </div>
 
-        <p className='filter-section'>
+        <div className='filter-section'>
           <button onClick={this.props.onReset} className='btn btn-default btn-round'>
             reset
           </button>
-        </p>
+        </div>
       </div>
     );
   }

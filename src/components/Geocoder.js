@@ -10,8 +10,8 @@ const PREFIX = '/geocoding/v5/mapbox.places';
 
 const getItemValue = (v) => v.place_name;
 
-const renderItem = (v) => (
-  <div className='geocoder-suggestion'>
+const renderItem = (v, isHighlighted) => (
+  <div className={`geocoder-suggestion ${isHighlighted && 'active'}`}>
     {v.place_name}
   </div>
 );
@@ -31,6 +31,28 @@ const search = (term) => {
 
 const searchIntermittently = debounce(search, 300);
 
+const MENU_STYLE = {
+  borderRadius: '3px',
+  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+  background: 'rgba(255, 255, 255, 0.9)',
+  padding: '2px 0',
+  fontSize: '90%',
+  position: 'fixed',
+  overflow: 'auto',
+  maxHeight: '50%',
+  zIndex: '999'
+};
+
+const WRAPPER_STYLE = {
+  display: 'inline-block',
+  width: '100%'
+};
+
+const INPUT_PROPS = {
+  className: 'form-control',
+  placeholder: 'Address'
+};
+
 export default class Geocoder extends Component {
   static propTypes = {
     onSelect: PropTypes.func.isRequired
@@ -40,6 +62,14 @@ export default class Geocoder extends Component {
     value: '',
     items: []
   };
+
+  handleSelect = (_text, address) => {
+    this.setState({
+      value: address.place_name
+    });
+
+    this.props.onSelect(address);
+  }
 
   handleChange = (event) => {
     const { value } = event.target;
@@ -60,9 +90,11 @@ export default class Geocoder extends Component {
         getItemValue={getItemValue}
         renderItem={renderItem}
         onChange={this.handleChange}
-        onSelect={this.props.onSelect}
+        onSelect={this.handleSelect}
         value={this.state.value}
-        inputProps={{className: 'form-control'}}
+        inputProps={INPUT_PROPS}
+        wrapperStyle={WRAPPER_STYLE}
+        menuStyle={MENU_STYLE}
       />
     );
   }

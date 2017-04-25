@@ -1,34 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Popup } from 'react-mapbox-gl';
-import geolib from 'geolib';
+import { getCenter } from './geometry';
 import {
   divisionPropType,
   openSeatsPropType
 } from './propTypes';
 
-const fromTuple = ([latitude, longitude]) => ({
-  latitude,
-  longitude
-});
-
-const toTuple = ({ latitude, longitude }) => [
-  latitude,
-  longitude
-];
-
-const getCenterOfDivision = (coordinates) => (
-  toTuple(geolib.getCenter(coordinates.map(fromTuple)))
-);
-
-const DivisionPopup = ({ division, openSeats, onClose }) => {
-  const center = getCenterOfDivision(
-    division.geometry.coordinates[0]
-  );
-
-  return (
-    <div className="popup">
-     <Popup coordinates={center}>
+const DivisionPopup = ({ division, center, openSeats, onClose }) => (
+  <div className="popup">
+    <Popup coordinates={center || getCenter(division.geometry.coordinates[0])}>
       <button type="button" className="close" aria-label="Close" onClick={onClose}>
         <span aria-hidden="true">X</span>
       </button>
@@ -52,10 +33,9 @@ const DivisionPopup = ({ division, openSeats, onClose }) => {
             <li><a href='#'>Position Duties</a></li>
           </ul>
       </div>
-   </Popup>
+    </Popup>
   </div>
-  );
-};
+);
 
 DivisionPopup.propTypes = {
   openSeats: openSeatsPropType.isRequired,
