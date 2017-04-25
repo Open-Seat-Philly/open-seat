@@ -30,4 +30,9 @@ export const divisionsHavingSeats = divisionData.features.filter(
   divisionHasOpenSeats
 );
 
+// Not yet implemented.
+export const filterDivisions = (divisions, filters) => {
+  return divisions;
+};
+
 export default divisionData;

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Filters from './map/Filters';
 import MapView from './map/MapView';
-import { divisionsHavingSeats } from './map/divisions';
+import {
+  filterDivisions,
+  divisionsHavingSeats
+} from './map/divisions';
 
 const INITIAL_STATE = {
   selectedDivision: null,
@@ -16,7 +19,13 @@ export default class Map extends Component {
   state = INITIAL_STATE
 
   handleChange = (filters) => {
-    this.setState({ filters });
+    this.setState({
+      filters,
+      divisions: filterDivisions(
+        this.state.divisions,
+        filters
+      )
+    });
   }
 
   handleReset = () => {
