@@ -63,6 +63,10 @@ export default class Geocoder extends Component {
         onSelect={this.props.onSelect}
         value={this.state.value}
         inputProps={{className: 'form-control'}}
+        wrapperStyle={{
+          display: 'inline-block',
+          width: '100%'
+        }}
       />
     );
   }
