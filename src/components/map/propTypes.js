@@ -11,11 +11,10 @@ export const divisionPropType = PropTypes.shape({
 });
 
 export const openSeatPropType = PropTypes.shape({
-  // A UNIQUE ID representing the specific seat
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]).isRequired
+  id: PropTypes.number.isRequired,
+  division: PropTypes.string.isRequired,
+  ward: PropTypes.string.isRequired,
+  office: PropTypes.string.isRequired
 });
 
 export const openSeatsPropType = PropTypes.arrayOf(openSeatPropType);

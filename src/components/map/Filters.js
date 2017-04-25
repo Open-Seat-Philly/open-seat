@@ -26,19 +26,18 @@ const PositionCheckbox = ({ selected, value, ...props }) => (
   </ListGroupItem>
 );
 
-const INITIAL_FILTERS = {
-  address: null,
-  positions: []
-}
-
 export default class Filters extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onReset: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    filters: PropTypes.shape({
+      positions: PropTypes.array.isRequired,
+      address: PropTypes.object
+    }).isRequired
   };
 
   state = {
-    activeKey: null,
-    filters: INITIAL_FILTERS
+    activeKey: null
   };
 
   handleAccordion = (key) => {
@@ -50,7 +49,7 @@ export default class Filters extends Component {
   }
 
   handlePositionChange = (event) => {
-    const { filters } = this.state;
+    const { filters } = this.props;
     const { positions } = filters;
     const { value } = event.target;
 
@@ -58,11 +57,9 @@ export default class Filters extends Component {
       ? positions.filter(v => v !== value)
       : [...positions, value]
 
-    this.setState({
-      filters: {
-        ...filters,
-        positions: nextPositions
-      }
+    this.props.onChange({
+      ...filters,
+      positions: nextPositions
     });
   }
 
@@ -74,24 +71,14 @@ export default class Filters extends Component {
    *   https://www.mapbox.com/api-documentation/#response-format
    */
   handleAddressChange = (addressText, geocodedAddress) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        address: geocodedAddress.center
-      }
+    this.props.onChange({
+      ...this.props.filters,
+      address: geocodedAddress
     });
   }
 
-  handleSubmit = () => {
-    this.props.onSubmit(this.state.filters);
-  };
-
-  handleReset = () => {
-    this.setState({ filters: INITIAL_FILTERS }, this.handleSubmit);
-  }
-
   render () {
-    const { positions } = this.state.filters;
+    const { positions } = this.props.filters;
 
     return (
       <div className='filters'>
@@ -152,11 +139,7 @@ export default class Filters extends Component {
         </p>
 
         <p className='filter-section'>
-          <button onClick={this.handleSubmit} className='btn btn-default btn-round'>
-            search
-          </button>
-
-          <button onClick={this.handleReset} className='btn btn-default btn-round'>
+          <button onClick={this.props.onReset} className='btn btn-default btn-round'>
             reset
           </button>
         </p>

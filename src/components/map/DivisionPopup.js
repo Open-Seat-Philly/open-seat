@@ -34,15 +34,15 @@ const DivisionPopup = ({ division, openSeats, onClose }) => {
       </button>
       <h5>Division {division.properties.DIVISION_NUM}</h5>
       <h5>Open Seats:</h5>
-        <ul>
-          <div>{openSeats.map(openSeat => (
-           <a href='#'>
-            <li key={openSeat.id}>
-             {openSeat.name}
-            </li></a>
+      <ul>
+        {openSeats.map(seat => (
+          <a href='#' key={seat.id}>
+            <li>
+              {seat.office}
+            </li>
+          </a>
         ))}
-          </div>
-        </ul>
+      </ul>
       <div>
         <h5>Resources</h5>
           <ul>

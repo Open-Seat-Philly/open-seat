@@ -1,51 +1,28 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Mapbox, { Layer, Feature } from 'react-mapbox-gl';
 import DivisionPopup from './DivisionPopup';
 import { openSeatsPropType } from './propTypes';
-import divisionData from '../../data/divisions.json';
-import divisionsHavingSeats from './divisionsHavingSeats';
+import divisionData, { getDivisionOpenSeats } from './divisions';
 
 const ZOOM = 10;
 const CENTER = [-75.1452, 39.9826];
 
-// TODO: This function should return only the open
-// seats in the specified division.
-const getOpenSeats = (division, openSeats) => {
-  return openSeats;
-};
-
-const INITIAL_STATE = {
-  selectedDivision: null,
-  selectedDivisionSeats: null
-};
-
 export default class MapView extends Component {
   static propTypes = {
-    openSeats: openSeatsPropType.isRequired
+    onDivisionClick: PropTypes.func.isRequired,
+    onPopupClose: PropTypes.func.isRequired,
+    divisions: PropTypes.array.isRequired,
+    selectedDivision: PropTypes.object
   };
 
-  state = INITIAL_STATE;
-
-  handleDivisionClick = ({ feature }) => {
-    const seats = getOpenSeats(
-      feature,
-      this.props.openSeats
-    );
-
-    this.setState({
-      selectedDivision: feature,
-      selectedDivisionSeats: seats
-    });
-  }
-
-  handlePopupClose = () => {
-    this.setState(INITIAL_STATE);
-  }
-
   render () {
-    const { openSeats } = this.props;
-    const { selectedDivision, selectedDivisionSeats } = this.state;
-
+    const {
+      selectedDivision,
+      divisions,
+      onDivisionClick,
+      onPopupClose
+    } = this.props;
 
     return (
       <div className='map-view'>
@@ -56,7 +33,7 @@ export default class MapView extends Component {
           accessToken={process.env.MAPBOX_TOKEN}
         >
 
-        {/*divisions layer outlines every division*/}
+          {/*divisions layer outlines every division*/}
           <Layer
             id='allDivisions'
             type='line'
@@ -79,10 +56,10 @@ export default class MapView extends Component {
               "fill-opacity":.25
             }}
           >
-            {divisionsHavingSeats.map(division => (
+            {divisions.map(division => (
               <Feature
                 key={division.properties['OBJECTID']}
-                onClick={this.handleDivisionClick}
+                onClick={onDivisionClick}
                 coordinates={division.geometry.coordinates}
                 properties={division.properties}
               />
@@ -92,14 +69,12 @@ export default class MapView extends Component {
           {selectedDivision && (
             <DivisionPopup
               division={selectedDivision}
-              openSeats={selectedDivisionSeats}
-              onClose={this.handlePopupClose}
+              openSeats={getDivisionOpenSeats(selectedDivision)}
+              onClose={onPopupClose}
             />
           )}
         </Mapbox>
       </div>
     );
-
-
   }
 }
