@@ -1,0 +1,12 @@
+.geocoder-suggestion {
+  padding: 6px;
+
+  &.active, &:hover, &:focus {
+    background-color: $component-active-bg;
+    color: $component-active-color;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
