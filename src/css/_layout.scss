@@ -16,6 +16,10 @@ body {
   }
 }
 
+.main {
+  padding-top: $navbar-height;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

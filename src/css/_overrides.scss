@@ -18,3 +18,17 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.navbar {
+  border-width: 0;
+}
+
+.navbar-default {
+  .navbar-toggle {
+    background-color: $color-yellow;
+  }
+
+  .navbar-collapse {
+    border-color: $color-blue;
+  }
+}
